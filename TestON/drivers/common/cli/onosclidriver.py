@@ -482,7 +482,7 @@ class OnosCliDriver(CLI):
         '''
         Drops the ONOS keyspace
         '''
-        self.handle.sendline("~/ONOS/scripts/test-drop-keyspace.sh")
+        self.handle.sendline("~/ONOS/scripts/drop-keyspace.sh")
         self.handle.expect("keyspace")
         self.handle.sendline("")
         self.handle.expect("\$")
