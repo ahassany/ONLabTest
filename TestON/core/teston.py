@@ -218,7 +218,9 @@ class TestON:
         
         self.stepCount = 0
         while self.stepCount < len(self.code[self.testCaseNumber].keys()):
-            result = self.runStep(self.stepList,self.code,self.testCaseNumber)
+            step = self.stepList[self.stepCount]
+            self.stepCount = self.stepCount + 1
+            result = self.runStep(self.stepList,self.code,self.testCaseNumber, step)
             if result == main.FALSE:
                 break
             elif result == main.TRUE :
@@ -229,14 +231,11 @@ class TestON:
             self.logger.updateCaseResults(self)
         return result
     
-    def runStep(self,stepList,code,testCaseNumber):
+    def runStep(self,stepList,code,testCaseNumber,step):
         if not cli.pause:
             try :
-                step = stepList[self.stepCount]
                 exec code[testCaseNumber][step] in module.__dict__
-                self.stepCount = self.stepCount + 1
             except TypeError,e:
-                self.stepCount = self.stepCount + 1
                 self.log.error(e)
             return main.TRUE
         
