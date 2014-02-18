@@ -145,7 +145,9 @@ class CassandraCliDriver(CLI):
             self.handle.expect("sh status") 
             self.handle.expect("\$") 
             result = self.handle.before + self.handle.after 
-            pattern = '(.*)Up(.*)Normal(.*)\n(.*)Up(.*)Normal(.*)\n(.*)Up(.*)Normal(.*)\n(.*)Up(.*)Normal(.*)'
+            #pattern = '(.*)Up(.*)Normal(.*)\n(.*)Up(.*)Normal(.*)\n(.*)Up(.*)Normal(.*)\n(.*)Up(.*)Normal(.*)'
+            # Just check if the current cassandra instance is running!
+            pattern = '('+ self.ip_address.replace('.', '\\.') + '.*)Up(.*)Normal(.*)'
             if re.search(pattern, result): 
                 return main.TRUE
         return main.FALSE
