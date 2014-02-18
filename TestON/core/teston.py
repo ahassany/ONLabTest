@@ -235,6 +235,9 @@ class TestON:
         if not cli.pause:
             try :
                 exec code[testCaseNumber][step] in module.__dict__
+                after_result = getattr(main, 'last_result', None)
+                if after_result == main.FALSE:
+                    return main.FALSE
             except TypeError,e:
                 self.log.error(e)
             return main.TRUE
