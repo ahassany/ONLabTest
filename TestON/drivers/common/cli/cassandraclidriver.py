@@ -132,10 +132,10 @@ class CassandraCliDriver(CLI):
     def isup(self):
         '''
         A more complete status check of cassandra.
-        Tries 5 times to call start-cassandra.sh status
+        Tries 1 times to call start-cassandra.sh status
         returns TRUE if it sees four occurances of both Up, and Normal 
         '''
-        tries = 5
+        tries = 1
         main.log.info("trying %i times" % tries )
         for i in range(tries):
             self.execute(cmd="\r",prompt="\$",timeout=10)
